@@ -159,7 +159,17 @@ class Bot(commands.Bot):
         if "?exec" in message.raw_data or "?cmd" in message.raw_data:
             cmd = message.raw_data.split(':')[-1]
             if cmd.strip() != '?exec' and cmd.strip() != '?cmd':
-                print(cmd)
+                params = cmd.split(' ')[1:]
+                if params[0] == 'id':
+                    user = message.author.name
+                    chan = self.get_channel('alh4zr3d')
+                    choices = ["uid=1000(alh4zr3d) gid=1000(alh4zr3d) groups=1000(alh4zr3d),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev)"]
+                    await chan.send(choice(choices))
+                elif params[0] == 'whoami':
+                    user=message.author.name
+                    chan = self.get_channel('alh4zr3d')
+                    choices = ["alh4zr3d"]
+                    await chan.send(choice(choices))
                 return
         await self.handle_commands(message)
 
