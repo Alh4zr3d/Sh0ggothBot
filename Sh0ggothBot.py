@@ -156,6 +156,11 @@ class Bot(commands.Bot):
         if not message.channel and "WHISPER" in message.raw_data:
 #            print(f"[*] Private message received: {message.content}")
             return
+        if "?exec" in message.raw_data or "?cmd" in message.raw_data:
+            cmd = message.raw_data.split(':')[-1]
+            if cmd.strip() != '?exec' and cmd.strip() != '?cmd':
+                print(cmd)
+                return
         await self.handle_commands(message)
 
     # Debugging
