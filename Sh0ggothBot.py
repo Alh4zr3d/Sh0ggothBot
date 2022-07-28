@@ -272,9 +272,10 @@ class Bot(commands.Bot):
     async def netstat(self, ctx: commands.Context):
         choices = [
             "One time chat harassed Al to run netstat pointlessly and now for some reason it's a meme. That's it. Idk either.",
-            "Look, Kubernetes is hard, but chat is dumber, ok?",
+            "Look, Kubernetes is hard, but chat is harder, ok? Kappa alh4zTopgay Kappa",
             "monkaShoot Ah, it's this joke again. monkaShoot"
         ]
+        await ctx.reply(choice(choices))
 
 async def pubsub_connect(bot, oauth_token, channel_id):
     topics = [
