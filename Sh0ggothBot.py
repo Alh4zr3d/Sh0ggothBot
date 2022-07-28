@@ -203,7 +203,7 @@ class Bot(commands.Bot):
 
     @commands.command()
     async def help(self, ctx: commands.Context):
-        await ctx.reply(f"Al is constantly working to improve my functionality. Currently available commands are \"hello\", \"socials\", \"whisper\", \"penis\", and \"sigma\".")
+        await ctx.reply(f"Al is constantly working to improve my functionality. Currently available commands are \"hello\", \"socials\", \"whisper\", \"penis\", \"sigma\", \"exec\", and \"netstat\"!")
 
     @commands.command()
     async def hello(self, ctx: commands.Context):
