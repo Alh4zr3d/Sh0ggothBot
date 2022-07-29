@@ -211,7 +211,7 @@ class Bot(commands.Bot):
 
     @commands.command()
     async def socials(self, ctx: commands.Context):
-        await ctx.reply(f"Alh4zr3d's socials -- Twitter: https://twittter.com/alh4zr3d, Youtube: https://www.youtube.com/channel/UCz-Z-d2VPQXHGkch0-_KovA, Patreon: https://patreon.com/alh4zr3d, OnlyFans: https://shorturl.at/afnY4, Github: https://github.com/alh4zr3d, Email: alh4zr3d@gmail.com")
+        await ctx.reply(f"Alh4zr3d's socials -- Twitter: https://twitter.com/alh4zr3d, Youtube: https://www.youtube.com/channel/UCz-Z-d2VPQXHGkch0-_KovA, Patreon: https://patreon.com/alh4zr3d, OnlyFans: https://shorturl.at/afnY4, Github: https://github.com/alh4zr3d, Email: alh4zr3d@gmail.com")
 
     @commands.command()
     async def whisper(self, ctx: commands.Context):
